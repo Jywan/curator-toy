@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16
+    container_name: curator-db
+    environment:
+      POSTGRES_DB: curator
+      POSTGRES_USER: curator
+      POSTGRES_PASSWORD: test1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

@@ -1,0 +1,13 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# env
+.env
+
+# OS
+.DS_Store
+
+# db / cache
+*.log
