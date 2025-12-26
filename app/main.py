@@ -7,6 +7,7 @@ from typing import Optional, List
 from .db import Base, engine, get_db
 from .models import Source, Item
 from .schemas import SourceCreate, SourceOut, ItemOut
+from .services.ingest import run_ingest
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -45,3 +46,7 @@ def list_items( q: Optional[str] = Query(default=None),
         like = f"%{q}%"
         stmt = stmt.where ((Item.title.ilike(like)) | (Item.snippet.ilike(like)))
     return db.execute(stmt.limit(limit)).scalars().all()
+
+@app.post("/ingest/run")
+def ingest_run(db: Session = Depends(get_db)):
+    return run_ingest(db)
