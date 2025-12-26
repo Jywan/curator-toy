@@ -11,3 +11,6 @@ __pycache__/
 
 # db / cache
 *.log
+
+#docker option
+docker-compose.yml
